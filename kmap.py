@@ -92,7 +92,7 @@ class k_map(object):
         for x in range(self.neurons.shape[0]):
             for y in range(self.neurons.shape[1]):
                 self.dissim[x][y] = np.linalg.norm(self.neurons[x][y]-input_vector)
-        max_fit=np.array([np.argmin(self.dissim)%self.num_x, np.argmin(self.dissim)/self.num_x])        
+        max_fit=np.array([np.argmin(self.dissim)/self.num_y, np.argmin(self.dissim)%self.num_y])
         return max_fit
     
 ################################################################################################
