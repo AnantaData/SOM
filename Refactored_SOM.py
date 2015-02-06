@@ -32,12 +32,9 @@ class SOM(object):
                 self.dissim[x][y] = np.linalg.norm(self.neurons[x][y]-input_vector)
                 print 'dissim ',x,y,' : ',self.dissim[x][y],
             print ' '
-        max_fit=np.array([np.argmin(self.dissim)/self.num_y, np.argmin(self.dissim)%self.num_y])
-        #max_fit = np.argmin(self.dissim)
-        #max_fit = self.dissim.argmin()
+        max_fit=np.array([np.argmin(self.dissim)/self.num_y,np.argmin(self.dissim)%self.num_y])
         print 'most similar to ',input_vector,' is ',max_fit
         return max_fit
-
 
     '''
     The reweight method iteratively applies the adjust subroutine to adjust the weights of an area that falls under the
@@ -60,6 +57,7 @@ class SOM(object):
     '''
 
     def _adjust(self,neuron,input,alpha):
+
         for i in range(neuron.shape[0]):
             neuron[i]= neuron[i]+(input[i]-neuron[i])*alpha
         return
@@ -109,9 +107,14 @@ def som(data,x_size,y_size,input_dims,decay,alpha,alpha_min):
     som_map._train_map(data,alpha,alpha_min,decay)
     #som_map._train_map(data,alpha)
     #som_map.print_dissim()
-    #som_map.print_nw()
+    print 'final map'
+    som_map.print_nw()
 
-data = ([1,0,0])
-data= np.array(data)
+d1 = [1,0,0]
+d2 = [0,0,0]
+data= []
+
+data.append(d1)
+data.append(d2)
 
 som(data,6,12,3,0.99,0.9,0.1)
